@@ -8,9 +8,6 @@ yarn-error.log*
 # Builds
 dist
 
-# Tests
-coverage
-
 # Runtime data
 pids
 *.pid
