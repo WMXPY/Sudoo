@@ -17,6 +17,15 @@ dev:
 	@echo "[INFO] Building for development"
 	@$(tsc) --p $(dev)
 
+tests:
+	@echo "[INFO] Testing with Mocha"
+ifeq ($(OS), Windows_NT)
+	@setx NODE_ENV test
+else
+	@NODE_ENV=test
+endif
+	@$(mocha)
+
 install:
 	@echo "[INFO] Installing Dependences"
 	@npm install

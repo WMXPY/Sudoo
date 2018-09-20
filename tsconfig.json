@@ -4,6 +4,7 @@
         "baseUrl": "./src",
         "paths": {
             "#/*": ["*"],
+            "#/common/*": ["common/*"],
         },
         "alwaysStrict": true,
         "removeComments": true,

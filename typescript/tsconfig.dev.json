@@ -18,7 +18,8 @@
         "noImplicitThis": true,
         "outDir": "../dist",
         "paths": {
-            "#/*": ["*"]
+            "#/*": ["*"],
+            "#/common/*": ["common/*"],
         },
         "removeComments": true,
         "resolveJsonModule": true,
