@@ -36,13 +36,14 @@ export const doo = () => {
     agent.listen((key: IInput) => {
         const str: string = current.input(key);
         const info: string | null = service.firstSimilar(str);
+        const head: string = '> ';
 
         let tail: string = '';
         if (info) {
             tail += suggestion(info);
         }
 
-        canvas.replace(str, tail);
-        canvas.cursor(current.length);
+        canvas.replace(head, str, tail);
+        canvas.cursor(current.length + 2);
     });
 };
