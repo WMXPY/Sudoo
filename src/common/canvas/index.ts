@@ -45,6 +45,11 @@ export class Canvas implements ICanvas {
     }
 
     public replace(...contents: string[]): ICanvas {
+        if (!this._lastDraw) {
+            this.draw(...contents);
+            return this;
+        }
+
         const lastDrawLines: number = this._lastDraw.split('\n').length;
         if (lastDrawLines > 1) {
             this.clear(lastDrawLines);

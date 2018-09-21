@@ -14,7 +14,7 @@ export interface IService {
 
     readonly disabled?: boolean;
 
-    execute: (args: string[]) => END_SIGNAL;
+    execute: (args: string[], env: IPathEnvironment) => END_SIGNAL;
 }
 
 export abstract class AbstractService implements IService {
@@ -25,4 +25,16 @@ export abstract class AbstractService implements IService {
     public execute(args: string[]): END_SIGNAL {
         return END_SIGNAL.FAILED;
     }
+}
+
+export interface IPathEnvironment {
+    doo?: string;
+    su?: string;
+    node: string;
+    cwd: string;
+}
+
+export interface ICommand {
+    command: string;
+    args: string[];
 }
