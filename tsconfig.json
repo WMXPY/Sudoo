@@ -5,6 +5,7 @@
         "paths": {
             "#/*": ["*"],
             "#/common/*": ["common/*"],
+            "#/service/*": ["service/*"],
             "#/util/*": ["util/*"],
         },
         "alwaysStrict": true,

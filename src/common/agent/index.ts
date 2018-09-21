@@ -28,11 +28,18 @@ export class Agent implements IAgent {
     public listen(executable: (key: IInput) => void): IAgent {
         if (process.stdin.setRawMode) {
             Readline.emitKeypressEvents(process.stdin);
-            process.stdin.setRawMode(true);
+            if (process.stdin.isTTY) process.stdin.setRawMode(true);
         }
 
         process.stdin.on('keypress', this.press);
         this._executable = executable;
+        return this;
+    }
+
+    public stopListen(): IAgent {
+        if (process.stdin.setRawMode) {
+            if (process.stdin.isTTY) process.stdin.setRawMode(false);
+        }
         return this;
     }
 

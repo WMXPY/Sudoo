@@ -15,6 +15,7 @@
         "paths": {
             "#/*": ["*"],
             "#/common/*": ["common/*"],
+            "#/service/*": ["service/*"],
             "#/util/*": ["util/*"],
         },
         "sourceMap": true,

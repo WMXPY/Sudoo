@@ -20,6 +20,7 @@
         "paths": {
             "#/*": ["*"],
             "#/common/*": ["common/*"],
+            "#/service/*": ["service/*"],
             "#/util/*": ["util/*"],
         },
         "removeComments": true,

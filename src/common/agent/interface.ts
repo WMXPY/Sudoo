@@ -7,6 +7,7 @@
 export interface IAgent {
     press: (str: string, key: IInput) => IAgent;
     listen: (executable: (key: IInput) => void) => IAgent;
+    stopListen: () => IAgent;
 }
 
 export enum SPECIAL_INPUT_NAME {
