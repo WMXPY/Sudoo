@@ -7,6 +7,7 @@
 export enum END_SIGNAL {
     SUCCEED = 0,
     FAILED = 1,
+    MORE_ARGS = 2,
 }
 
 export interface IService {

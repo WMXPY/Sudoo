@@ -49,10 +49,7 @@ export class Agent implements IAgent {
             return this;
         }
 
-        if (process.stdin.setRawMode) {
-            if (process.stdin.isTTY) process.stdin.setRawMode(false);
-        }
-        this._listening = false;
+        this._executable = (key: IInput) => null;
         return this;
     }
 

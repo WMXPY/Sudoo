@@ -15,6 +15,11 @@ export class ServiceNote extends AbstractService implements IService {
     public execute(args: string[]): END_SIGNAL {
         const canvas: ICanvas = Canvas.instance;
         canvas.drawObject(args);
-        return END_SIGNAL.SUCCEED;
+
+        if (args.length >= 3) {
+            return END_SIGNAL.SUCCEED;
+        } else {
+            return END_SIGNAL.MORE_ARGS;
+        }
     }
 }
