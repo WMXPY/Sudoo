@@ -8,11 +8,21 @@ import { IAgent, IInput } from "#/common/agent/interface";
 import * as Readline from 'readline';
 
 export class Agent implements IAgent {
+    private static _instance: Agent | null;
+
     private _executable: (key: IInput) => void;
 
     public constructor() {
         this.press = this.press.bind(this);
         this._executable = console.log;
+    }
+
+    public static get instance(): Agent {
+        if (!this._instance) {
+            this._instance = new Agent();
+        }
+
+        return this._instance;
     }
 
     public listen(executable: (key: IInput) => void): IAgent {

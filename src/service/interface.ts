@@ -4,6 +4,13 @@
  * @fileoverview Interface
  */
 
+export enum END_SIGNAL {
+    SUCCEED = 0,
+    FAILED = 1,
+}
+
 export interface IService {
-    execute: (args: string[]) => number;
+    readonly command?: string;
+
+    execute: (args: string[]) => END_SIGNAL;
 }
