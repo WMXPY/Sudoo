@@ -1,4 +1,7 @@
 {
+  "bin": {
+    "doo": "bin/doo.js"
+  },
   "name": "sudoo",
   "version": "0.0.0",
   "description": "temp",

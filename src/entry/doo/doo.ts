@@ -12,9 +12,10 @@ import { Canvas } from "#/common/canvas";
 import { ICanvas } from "#/common/canvas/interface";
 import { END_SIGNAL, IService } from "#/service/interface";
 import { Services } from "#/service/services";
+import { error, ERROR_CODE } from "#/util/error";
 import { suggestion } from "./print";
 
-export const doo = () => {
+const doo_io = (nodePath: string, dooPath: string) => {
     const canvas: ICanvas = Canvas.instance;
     const agent: IAgent = Agent.instance;
     const service: Services = Services.instance;
@@ -23,7 +24,7 @@ export const doo = () => {
             const target: IService | null = service.find(result);
             if (target) {
                 const endSignal: END_SIGNAL = target.execute([]);
-                process.exit(endSignal);
+                canvas.exit(END_SIGNAL.SUCCEED);
             } else {
                 agent.stopListen();
                 canvas.exit(END_SIGNAL.FAILED);
@@ -44,4 +45,36 @@ export const doo = () => {
         canvas.replace(head, str, tail);
         canvas.cursor(current.length + 2);
     });
+};
+
+const doo_cmd = (argv: string[]) => {
+    if (argv.length < 1) {
+        throw error(ERROR_CODE.PROCESS_ARGV_NOT_ENOUGH);
+    }
+
+    const service: Services = Services.instance;
+    const command: string = argv.shift() as string;
+    const canvas: ICanvas = Canvas.instance;
+
+    const target: IService | null = service.find(command);
+    if (target) {
+        const endSignal: END_SIGNAL = target.execute(argv);
+        canvas.exit(END_SIGNAL.SUCCEED);
+    } else {
+        canvas.exit(END_SIGNAL.FAILED);
+    }
+};
+
+export const doo = (rawArgv: string[]) => {
+    const argv: string[] = [...rawArgv];
+    if (argv.length < 2) {
+        throw error(ERROR_CODE.PROCESS_ARGV_NOT_ENOUGH);
+    }
+    const nodePath: string = argv.shift() as string;
+    const dooPath: string = argv.shift() as string;
+    if (argv.length === 0) {
+        doo_io(nodePath, dooPath);
+    } else {
+        doo_cmd(argv);
+    }
 };

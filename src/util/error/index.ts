@@ -5,11 +5,13 @@
  */
 
 export enum ERROR_CODE {
+    PROCESS_ARGV_NOT_ENOUGH = 1000,
 }
 
 export const errorList: {
     [key: number]: string;
 } = {
+    1000: 'Process should have more args',
 };
 
 /**

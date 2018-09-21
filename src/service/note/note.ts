@@ -11,6 +11,7 @@ export class ServiceNote extends AbstractService implements IService {
     public readonly command: string = 'note';
 
     public execute(args: string[]): END_SIGNAL {
+        console.log(args);
         return END_SIGNAL.SUCCEED;
     }
 }
