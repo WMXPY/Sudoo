@@ -5,13 +5,16 @@
  * @fileoverview Note
  */
 
+import { Canvas } from "#/common/canvas";
+import { ICanvas } from "#/declare/canvas";
 import { AbstractService, END_SIGNAL, IService } from "#/declare/service";
 
 export class ServiceNote extends AbstractService implements IService {
     public readonly command: string = 'note';
 
     public execute(args: string[]): END_SIGNAL {
-        console.log(args);
+        const canvas: ICanvas = Canvas.instance;
+        canvas.drawObject(args);
         return END_SIGNAL.SUCCEED;
     }
 }

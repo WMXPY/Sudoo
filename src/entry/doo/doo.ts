@@ -23,6 +23,7 @@ const doo_io = (nodePath: string, dooPath: string) => {
         .setOnEnter((result: string) => {
             const target: IService | null = service.find(result);
             if (target) {
+                canvas.enter();
                 const endSignal: END_SIGNAL = target.execute([]);
                 canvas.exit(END_SIGNAL.SUCCEED);
             } else {
@@ -58,6 +59,7 @@ const doo_cmd = (argv: string[]) => {
 
     const target: IService | null = service.find(command);
     if (target) {
+        canvas.enter();
         const endSignal: END_SIGNAL = target.execute(argv);
         canvas.exit(END_SIGNAL.SUCCEED);
     } else {

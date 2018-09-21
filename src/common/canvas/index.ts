@@ -34,25 +34,49 @@ export class Canvas implements ICanvas {
         return this;
     }
 
+    public drawObject(object: any): ICanvas {
+        this.draw(JSON.stringify(object, null, 2));
+        return this;
+    }
+
     public enter(): ICanvas {
         this._stream.write('\n');
         return this;
     }
 
     public replace(...contents: string[]): ICanvas {
-        this.cursor(0);
+        const lastDrawLines: number = this._lastDraw.split('\n').length;
+        if (lastDrawLines > 1) {
+            this.clear(lastDrawLines);
+        } else {
+            this.clear();
+        }
+
         this.draw(...contents);
-        this.clear();
         return this;
     }
 
-    public cursor(place: number): ICanvas {
-        (this._stream as any).cursorTo(place);
+    public cursor(place: number, top?: boolean): ICanvas {
+        if (top) {
+            (this._stream as any).moveCursor(place, -1);
+        } else {
+            (this._stream as any).cursorTo(place);
+        }
+
         return this;
     }
 
-    public clear(): ICanvas {
-        (this._stream as any).clearLine(1);
+    public clear(lines?: number): ICanvas {
+        this.cursor(0);
+        (this._stream as any).clearLine();
+
+        if (lines) {
+            for (let i = 0; i < lines; i++) {
+                this.cursor(0, true);
+                (this._stream as any).clearLine();
+            }
+        }
+
         return this;
     }
 
