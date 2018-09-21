@@ -5,6 +5,7 @@
         "paths": {
             "#/*": ["*"],
             "#/common/*": ["common/*"],
+            "#/util/*": ["util/*"],
         },
         "alwaysStrict": true,
         "removeComments": true,

@@ -20,6 +20,7 @@
         "paths": {
             "#/*": ["*"],
             "#/common/*": ["common/*"],
+            "#/util/*": ["util/*"],
         },
         "removeComments": true,
         "resolveJsonModule": true,

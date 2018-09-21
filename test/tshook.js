@@ -20,5 +20,6 @@ const Path = require('path');
     ModuleAlias.addAliases({
         "#": here,
         "#/common": Path.join(here, 'common'),
+        "#/util": Path.join(here, 'util'),
     });
 })(process.env.NODE_MODULE_ALIAS_SUDOO);
