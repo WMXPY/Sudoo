@@ -4,7 +4,7 @@
  * @fileoverview Services
  */
 
-import { IService } from "./interface";
+import { IService } from "#/declare/service";
 import { ServiceNote } from "./note/note";
 
 const getServices = (): IService[] => [

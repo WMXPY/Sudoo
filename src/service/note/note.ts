@@ -5,7 +5,7 @@
  * @fileoverview Note
  */
 
-import { AbstractService, END_SIGNAL, IService } from "../interface";
+import { AbstractService, END_SIGNAL, IService } from "#/declare/service";
 
 export class ServiceNote extends AbstractService implements IService {
     public readonly command: string = 'note';

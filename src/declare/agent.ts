@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Common_Agent
- * @fileoverview Interface
+ * @namespace Declare
+ * @fileoverview Common_Agent
  */
 
 export interface IAgent {

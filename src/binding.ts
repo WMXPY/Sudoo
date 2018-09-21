@@ -12,6 +12,7 @@ import * as Path from 'path';
     ModuleAlias.addAliases({
         "#": here,
         "#/common": Path.join(here, 'common'),
+        "#/declare": Path.join(here, 'declare'),
         "#/service": Path.join(here, 'service'),
         "#/util": Path.join(here, 'util'),
     });

@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Mock_Node_Console
- * @fileoverview Class
+ * @namespace Mock_Node
+ * @fileoverview Console
  */
 
 export interface IMockConsoleResult {

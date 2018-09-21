@@ -5,23 +5,20 @@
  */
 
 import { Canvas } from '#/common/canvas';
-import { ICanvas } from '#/common/canvas/interface';
 import { expect } from 'chai';
-import { IMockConsoleResult, mockConsole } from '../mock/node/console';
+import * as Chance from 'chance';
+import { MockWriteableStream } from '../mock/node/writeable';
 
 describe('Given Canvas common class', function (this: Mocha.Suite): void {
-    let canvas: ICanvas;
-
-    before(() => {
-        canvas = new Canvas();
-    });
+    const chance: Chance.Chance = new Chance('common-canvas-test');
 
     it('should draw logs to terminal', () => {
-        const restoreConsole = mockConsole();
+        const stream = new MockWriteableStream();
+        const canvas = new Canvas(stream.flush());
 
-        canvas.draw('test');
+        canvas.draw(chance.string());
 
-        const result: IMockConsoleResult = restoreConsole();
-        expect(result.log).to.be.lengthOf(1);
+        const result: string[] = stream.result();
+        expect(result).to.be.lengthOf(1);
     });
 });

@@ -7,10 +7,10 @@
 require('../../binding');
 import { Agent } from "#/common/agent";
 import { Current } from "#/common/agent/current";
-import { IAgent, IInput } from "#/common/agent/interface";
 import { Canvas } from "#/common/canvas";
-import { ICanvas } from "#/common/canvas/interface";
-import { END_SIGNAL, IService } from "#/service/interface";
+import { IAgent, IInput } from "#/declare/agent";
+import { ICanvas } from "#/declare/canvas";
+import { END_SIGNAL, IService } from "#/declare/service";
 import { Services } from "#/service/services";
 import { error, ERROR_CODE } from "#/util/error";
 import { suggestion } from "./print";

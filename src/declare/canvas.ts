@@ -1,10 +1,10 @@
 /**
  * @author WMXPY
- * @namespace Common_Canvas
- * @fileoverview Interface
+ * @namespace Declare
+ * @fileoverview Common_Canvas
  */
 
-import { END_SIGNAL } from "#/service/interface";
+import { END_SIGNAL } from "#/declare/service";
 
 export interface ICanvas {
     draw: (...contents: string[]) => ICanvas;

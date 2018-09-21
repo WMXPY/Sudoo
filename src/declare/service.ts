@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Service
- * @fileoverview Interface
+ * @namespace Declare
+ * @fileoverview Service
  */
 
 export enum END_SIGNAL {

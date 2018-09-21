@@ -4,8 +4,8 @@
  * @fileoverview Class
  */
 
-import { ICanvas } from "#/common/canvas/interface";
-import { END_SIGNAL } from "#/service/interface";
+import { ICanvas } from "#/declare/canvas";
+import { END_SIGNAL } from "#/declare/service";
 
 export class Canvas implements ICanvas {
     private static _instance: Canvas | null;
@@ -14,8 +14,8 @@ export class Canvas implements ICanvas {
 
     private _lastDraw: string;
 
-    public constructor() {
-        this._stream = process.stdout;
+    public constructor(stream?: NodeJS.WritableStream) {
+        this._stream = stream || process.stdout;
         this._lastDraw = '';
     }
 

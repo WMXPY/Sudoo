@@ -4,17 +4,19 @@
  * @fileoverview Class
  */
 
-import { IAgent, IInput } from "#/common/agent/interface";
+import { IAgent, IInput } from "#/declare/agent";
 import * as Readline from 'readline';
 
 export class Agent implements IAgent {
     private static _instance: Agent | null;
 
     private _executable: (key: IInput) => void;
+    private _listening: boolean;
 
     public constructor() {
         this.press = this.press.bind(this);
         this._executable = console.log;
+        this._listening = false;
     }
 
     public static get instance(): Agent {
@@ -26,6 +28,11 @@ export class Agent implements IAgent {
     }
 
     public listen(executable: (key: IInput) => void): IAgent {
+        if (this._listening) {
+            this._executable = executable;
+            return this;
+        }
+
         if (process.stdin.setRawMode) {
             Readline.emitKeypressEvents(process.stdin);
             if (process.stdin.isTTY) process.stdin.setRawMode(true);
@@ -33,13 +40,19 @@ export class Agent implements IAgent {
 
         process.stdin.on('keypress', this.press);
         this._executable = executable;
+        this._listening = true;
         return this;
     }
 
     public stopListen(): IAgent {
+        if (!this._listening) {
+            return this;
+        }
+
         if (process.stdin.setRawMode) {
             if (process.stdin.isTTY) process.stdin.setRawMode(false);
         }
+        this._listening = false;
         return this;
     }
 
