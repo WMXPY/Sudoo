@@ -14,10 +14,10 @@ endif
 sudoo: dev
 
 su:
-	node dist/su/su.js
+	@node dist/su/su.js
 
 doo:
-	node dist/doo/doo.js
+	@node bin/doo.js
 
 dev:
 	@echo "[INFO] Building for development"

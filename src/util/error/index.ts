@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Error
+ * @namespace Util_Error
  * @fileoverview Index
  */
 

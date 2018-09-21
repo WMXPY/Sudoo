@@ -10,8 +10,11 @@ import { IAgent, IInput } from "#/common/agent/interface";
 import { Canvas } from "#/common/canvas";
 import { ICanvas } from "#/common/canvas/interface";
 
-const canvas: ICanvas = Canvas.instance;
-const agent: IAgent = Agent.instance;
-agent.listen((key: IInput) => {
-    canvas.draw(key.toString());
-});
+export const doo = () => {
+    const canvas: ICanvas = Canvas.instance;
+    const agent: IAgent = Agent.instance;
+    agent.listen((key: IInput) => {
+        canvas.replace(key.sequence, key.name as string);
+        canvas.cursor(1);
+    });
+};

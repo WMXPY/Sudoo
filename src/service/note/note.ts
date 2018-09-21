@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Service
+ * @namespace Service_Note
  * @description Note
  * @fileoverview Note
  */
