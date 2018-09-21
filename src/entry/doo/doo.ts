@@ -4,7 +4,7 @@
  * @fileoverview Index
  */
 
-require('../binding');
+require('../../binding');
 import { Agent } from "#/common/agent";
 import { Current } from "#/common/agent/current";
 import { IAgent, IInput } from "#/common/agent/interface";
@@ -26,9 +26,7 @@ export const doo = () => {
                 process.exit(endSignal);
             } else {
                 agent.stopListen();
-                canvas.enter();
-                canvas.draw('end');
-                process.exit();
+                canvas.exit(END_SIGNAL.FAILED);
             }
         })
         .setOnTab((result: string) => service.firstSimilar(result) || result);

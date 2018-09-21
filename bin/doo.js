@@ -1,5 +1,5 @@
 const {
     doo
-} = require('../dist/doo/doo');
+} = require('../dist/entry/doo/doo');
 
 doo();

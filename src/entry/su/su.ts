@@ -4,7 +4,7 @@
  * @fileoverview Index
  */
 
-require('../binding');
+require('../../binding');
 import { Agent } from "#/common/agent";
 import { IAgent, IInput } from "#/common/agent/interface";
 import { Canvas } from "#/common/canvas";

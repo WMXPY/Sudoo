@@ -5,6 +5,7 @@
  */
 
 import { ICanvas } from "#/common/canvas/interface";
+import { END_SIGNAL } from "#/service/interface";
 
 export class Canvas implements ICanvas {
     private static _instance: Canvas | null;
@@ -53,5 +54,12 @@ export class Canvas implements ICanvas {
     public clear(): ICanvas {
         (this._stream as any).clearLine(1);
         return this;
+    }
+
+    public exit(signal: END_SIGNAL, info?: string): void {
+        this.enter();
+        if (info) this.draw(info);
+        process.exit(signal);
+        return;
     }
 }
