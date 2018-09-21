@@ -13,6 +13,12 @@ endif
 
 sudoo: dev
 
+su:
+	node dist/su/su.js
+
+doo:
+	node dist/doo/doo.js
+
 dev:
 	@echo "[INFO] Building for development"
 	@$(tsc) --p $(dev)
