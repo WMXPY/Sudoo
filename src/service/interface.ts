@@ -10,7 +10,19 @@ export enum END_SIGNAL {
 }
 
 export interface IService {
-    readonly command?: string;
+    readonly command: string;
+
+    readonly disabled?: boolean;
 
     execute: (args: string[]) => END_SIGNAL;
+}
+
+export abstract class AbstractService implements IService {
+    public abstract readonly command: string;
+
+    public readonly disabled?: boolean;
+
+    public execute(args: string[]): END_SIGNAL {
+        return END_SIGNAL.FAILED;
+    }
 }

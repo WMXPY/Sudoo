@@ -5,12 +5,11 @@
  * @fileoverview Note
  */
 
-import { command } from "../decorator";
-import { END_SIGNAL, IService } from "../interface";
-import { Service } from "../service";
+import { AbstractService, END_SIGNAL, IService } from "../interface";
 
-@command('note')
-export class ServiceNote extends Service implements IService {
+export class ServiceNote extends AbstractService implements IService {
+    public readonly command: string = 'note';
+
     public execute(args: string[]): END_SIGNAL {
         return END_SIGNAL.SUCCEED;
     }

@@ -5,11 +5,11 @@
  */
 
 // Decorator
-export const command = (cmd: string) => {
+export const disabled = () => {
     return <T extends { new(...args: any[]): {} }>(target: T) => {
         // tslint:disable-next-line
         return class extends target {
-            public readonly command: string = cmd;
+            public readonly disabled: boolean = true;
         };
     };
 };
