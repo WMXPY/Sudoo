@@ -1,0 +1,8 @@
+typescript
+src
+test
+docs
+.vscode
+.travis.yml
+makefile
+tsconfig.json
