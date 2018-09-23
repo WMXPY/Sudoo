@@ -22,6 +22,25 @@
   "bugs": {
     "url": "https://github.com/WMXPY/Sudoo/issues"
   },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "instrument": true,
+    "reporter": [
+      "json",
+      "text-summary"
+    ],
+    "report-dir": "coverage",
+    "require": [
+      "./test/tshook.js"
+    ],
+    "sourceMap": true
+  },
   "homepage": "https://github.com/WMXPY/Sudoo#readme",
   "dependencies": {
     "chance": "^1.0.16",
