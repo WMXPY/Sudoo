@@ -5,7 +5,7 @@
  */
 
 
-export const similar = (baseStr: string, targetStr: string) => {
+export const similar = (baseStr: string, targetStr: string): number => {
     const base: string = baseStr.toLowerCase();
     const target: string = targetStr.toLowerCase();
 

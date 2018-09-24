@@ -33,7 +33,7 @@ endif
 	@$(mocha)
 
 cov:
-	@echo "[INFO] Testing with Mocha"
+	@echo "[INFO] Testing with Nyc and Mocha"
 ifeq ($(OS), Windows_NT)
 	@-setx NODE_ENV test
 else
