@@ -11,7 +11,7 @@ import { IAgent } from "#declare/agent";
 import { ICanvas } from "#declare/canvas";
 import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
 import { execute, listenCommandWithArgsCurrent } from "#script/handler";
-import { print_header } from "#script/print";
+import { print_snapshot } from "#script/snapshot";
 import { Services } from "#service/services";
 import { stringToArgs } from "#util/string/string";
 
@@ -20,7 +20,7 @@ export const executeIOScript = (service: Services, env: IPathEnvironment) => {
     const agent: IAgent = Agent.instance;
     const current: Current = new Current()
         .setOnEnter((str: string) => {
-            canvas.replace(print_header(str));
+            canvas.replace(print_snapshot(str));
             const command: ICommand = stringToArgs(str);
 
             const target: IService | null = service.find(command.command);
@@ -33,6 +33,6 @@ export const executeIOScript = (service: Services, env: IPathEnvironment) => {
         })
         .setOnTab((result: string) => service.firstSimilar(result) || result);
 
-    canvas.draw(print_header());
+    canvas.draw(print_snapshot());
     agent.listen(listenCommandWithArgsCurrent(service, current));
 };

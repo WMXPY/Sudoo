@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Doo
+ * @namespace Script
  * @fileoverview Handler
  */
 
@@ -11,6 +11,7 @@ import { IAgent, IInput, SPECIAL_INPUT_NAME } from "#declare/agent";
 import { ICanvas } from "#declare/canvas";
 import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
 import { print_header, print_suggestion, print_takeingMore } from "#script/print";
+import { print_snapshot } from "#script/snapshot";
 import { Services } from "#service/services";
 import { stringToArgs } from "#util/string/string";
 
@@ -77,7 +78,7 @@ export const listenCommandWithArgsCurrent = (service: Services, current: Current
             tail += print_suggestion(info, command.args.length);
         }
 
-        canvas.replace(print_header(str, tail));
+        canvas.replace(print_snapshot(str));
         canvas.cursor(current.length + 2);
     };
 };

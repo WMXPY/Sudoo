@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Doo
+ * @namespace Script
  * @fileoverview Print
  */
 

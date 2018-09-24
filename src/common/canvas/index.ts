@@ -52,7 +52,7 @@ export class Canvas implements ICanvas {
 
         const lastDrawLines: number = this._lastDraw.split('\n').length;
         if (lastDrawLines > 1) {
-            this.clear(lastDrawLines);
+            this.clear(lastDrawLines - 1);
         } else {
             this.clear();
         }

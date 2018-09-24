@@ -22,7 +22,7 @@ export type PatternMap<T> = {
 export enum ARGUMENT_TYPE {
     STRING = 'STRING',
     PATH = 'PATH',
-    NUMBEr = 'NUMBER',
+    NUMBER = 'NUMBER',
     BOOLEAN = 'BOOLEAN',
 }
 
