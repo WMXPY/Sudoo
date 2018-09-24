@@ -26,11 +26,20 @@ dev:
 tests:
 	@echo "[INFO] Testing with Mocha"
 ifeq ($(OS), Windows_NT)
-	@setx NODE_ENV test
+	@-setx NODE_ENV test
 else
-	@NODE_ENV=test
+	@-export NODE_ENV=test
 endif
 	@$(mocha)
+
+cov:
+	@echo "[INFO] Testing with Mocha"
+ifeq ($(OS), Windows_NT)
+	@-setx NODE_ENV test
+else
+	@-export NODE_ENV=test
+endif
+	@nyc $(mocha)
 
 install:
 	@echo "[INFO] Installing Dependences"

@@ -4,6 +4,7 @@
  * @fileoverview Class
  */
 
+require('../../src/binding');
 import { Canvas } from '#common/canvas';
 import { expect } from 'chai';
 import * as Chance from 'chance';

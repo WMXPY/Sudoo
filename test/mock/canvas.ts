@@ -18,6 +18,11 @@ export class MockCanvas implements ICanvas {
         return this;
     }
 
+    public drawObject(...contents: string[]) {
+        this._result.push(...contents);
+        return this;
+    }
+
     public enter() {
         this._result.push('enter');
         return this;
