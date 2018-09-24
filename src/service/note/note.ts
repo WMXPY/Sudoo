@@ -10,7 +10,7 @@ import { ICanvas } from "#declare/canvas";
 import { AbstractService, ArgPatternMap, END_SIGNAL, IService } from "#declare/service";
 
 export class ServiceNote extends AbstractService implements IService {
-    public readonly command: string[] = ['note'];
+    public readonly commands: string[] = ['note'];
     public readonly pattern: ArgPatternMap = {};
 
     public execute(args: string[]): END_SIGNAL {

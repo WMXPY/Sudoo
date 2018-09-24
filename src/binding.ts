@@ -16,6 +16,7 @@ import * as Path from 'path';
         "#": here,
         "#common": Path.join(here, 'common'),
         "#declare": Path.join(here, 'declare'),
+        "#script": Path.join(here, 'script'),
         "#service": Path.join(here, 'service'),
         "#util": Path.join(here, 'util'),
     });

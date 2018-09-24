@@ -35,7 +35,7 @@ export interface IArgumentPattern {
 export type ArgPatternMap = PatternMap<IArgumentPattern>;
 
 export interface IService {
-    readonly command: string[];
+    readonly commands: string[];
     readonly pattern: ArgPatternMap;
 
     readonly disabled?: boolean;
@@ -44,7 +44,7 @@ export interface IService {
 }
 
 export abstract class AbstractService implements IService {
-    public abstract readonly command: string[];
+    public abstract readonly commands: string[];
     public abstract readonly pattern: ArgPatternMap;
 
     public readonly disabled?: boolean;

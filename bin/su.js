@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var doo = require('../dist/entry/doo');
+var su = require('../dist/entry/su');
 
 try {
-    doo.doo(process.argv);
+    su.su(process.argv);
 } catch (err) {
     console.log(err.message);
     process.exit();

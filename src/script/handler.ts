@@ -10,9 +10,9 @@ import { Canvas } from "#common/canvas";
 import { IAgent, IInput, SPECIAL_INPUT_NAME } from "#declare/agent";
 import { ICanvas } from "#declare/canvas";
 import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
+import { print_header, print_suggestion, print_takeingMore } from "#script/print";
 import { Services } from "#service/services";
 import { stringToArgs } from "#util/string/string";
-import { print_header, print_suggestion, print_takeingMore } from "./print";
 
 export const execute = (
     service: IService,
@@ -59,8 +59,7 @@ export const executeWithMoreArgs = (
     canvas.draw(print_header());
 };
 
-export const listenCommandWithArgsCurrent = (current: Current) => {
-    const service: Services = Services.instance;
+export const listenCommandWithArgsCurrent = (service: Services, current: Current) => {
     const canvas: ICanvas = Canvas.instance;
 
     return (key: IInput) => {

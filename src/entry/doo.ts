@@ -4,23 +4,23 @@
  * @fileoverview Index
  */
 
-require('../../binding');
+require('../binding');
 import { Agent } from "#common/agent";
 import { Current } from "#common/agent/current";
 import { Canvas } from "#common/canvas";
 import { IAgent } from "#declare/agent";
 import { ICanvas } from "#declare/canvas";
 import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
+import { execute, listenCommandWithArgsCurrent } from "#script/handler";
+import { print_header } from "#script/print";
 import { Services } from "#service/services";
 import { error, ERROR_CODE } from "#util/error";
 import { stringToArgs } from "#util/string/string";
-import { execute, listenCommandWithArgsCurrent } from "./handler";
-import { print_header } from "./print";
 
 const doo_io = (env: IPathEnvironment) => {
     const canvas: ICanvas = Canvas.instance;
     const agent: IAgent = Agent.instance;
-    const service: Services = Services.instance;
+    const service: Services = Services.DOOInstance;
     const current: Current = new Current()
         .setOnEnter((str: string) => {
             canvas.replace(print_header(str));
@@ -37,7 +37,7 @@ const doo_io = (env: IPathEnvironment) => {
         .setOnTab((result: string) => service.firstSimilar(result) || result);
 
     canvas.draw(print_header());
-    agent.listen(listenCommandWithArgsCurrent(current));
+    agent.listen(listenCommandWithArgsCurrent(service, current));
 };
 
 const doo_cmd = (argv: string[], env: IPathEnvironment) => {
@@ -45,7 +45,7 @@ const doo_cmd = (argv: string[], env: IPathEnvironment) => {
         throw error(ERROR_CODE.PROCESS_ARGV_NOT_ENOUGH);
     }
 
-    const service: Services = Services.instance;
+    const service: Services = Services.DOOInstance;
     const command: string = argv.shift() as string;
     const canvas: ICanvas = Canvas.instance;
 

@@ -5,14 +5,20 @@
  */
 
 import { IService } from "#declare/service";
+import { ServiceInstall } from "#service/install/install";
 import { ServiceNote } from "./note/note";
 
-const getServices = (): IService[] => [
+const getSUServices = (): IService[] => [
+    new ServiceInstall(),
+];
+
+const getDOOServices = (): IService[] => [
     new ServiceNote(),
 ];
 
 export class Services {
-    private static _instance: Services | null;
+    private static _su_instance: Services | null;
+    private static _doo_instance: Services | null;
 
     private _services: IService[];
 
@@ -22,7 +28,7 @@ export class Services {
 
     public find(command: string): IService | null {
         for (let service of this._services) {
-            if (service.command === command) {
+            if (service.commands.includes(command)) {
                 return service;
             }
         }
@@ -31,18 +37,28 @@ export class Services {
 
     public firstSimilar(cut: string): string | null {
         for (let service of this._services) {
-            if (service.command.includes(cut)) {
-                return service.command;
+            for (let command of service.commands) {
+                if (command.includes(cut)) {
+                    return command;
+                }
             }
         }
         return null;
     }
 
-    public static get instance(): Services {
-        if (!this._instance) {
-            this._instance = new Services(getServices());
+    public static get SUInstance(): Services {
+        if (!this._su_instance) {
+            this._su_instance = new Services(getSUServices());
         }
 
-        return this._instance;
+        return this._su_instance;
+    }
+
+    public static get DOOInstance(): Services {
+        if (!this._doo_instance) {
+            this._doo_instance = new Services(getDOOServices());
+        }
+
+        return this._doo_instance;
     }
 }

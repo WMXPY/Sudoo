@@ -6,6 +6,7 @@
             "#/*": ["*"],
             "#common/*": ["common/*"],
             "#declare/*": ["declare/*"],
+            "#script/*": ["script/*"],
             "#service/*": ["service/*"],
             "#util/*": ["util/*"],
         },
