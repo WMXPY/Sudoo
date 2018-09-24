@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var su = require('../dist/entry/su');
+var suu = require('../dist/entry/suu');
 
 try {
-    su.su(process.argv);
+    suu.suu(process.argv);
 } catch (err) {
     console.log(err.message);
     process.exit();

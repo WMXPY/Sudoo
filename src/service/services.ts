@@ -17,7 +17,7 @@ const getDOOServices = (): IService[] => [
 ];
 
 export class Services {
-    private static _su_instance: Services | null;
+    private static _suu_instance: Services | null;
     private static _doo_instance: Services | null;
 
     private _services: IService[];
@@ -46,12 +46,12 @@ export class Services {
         return null;
     }
 
-    public static get SUInstance(): Services {
-        if (!this._su_instance) {
-            this._su_instance = new Services(getSUServices());
+    public static get SUUInstance(): Services {
+        if (!this._suu_instance) {
+            this._suu_instance = new Services(getSUServices());
         }
 
-        return this._su_instance;
+        return this._suu_instance;
     }
 
     public static get DOOInstance(): Services {
