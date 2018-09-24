@@ -4,14 +4,14 @@
  * @fileoverview Handler
  */
 
-import { Agent } from "#/common/agent";
-import { Current } from "#/common/agent/current";
-import { Canvas } from "#/common/canvas";
-import { IAgent, IInput, SPECIAL_INPUT_NAME } from "#/declare/agent";
-import { ICanvas } from "#/declare/canvas";
-import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#/declare/service";
-import { Services } from "#/service/services";
-import { stringToArgs } from "#/util/string/string";
+import { Agent } from "#common/agent";
+import { Current } from "#common/agent/current";
+import { Canvas } from "#common/canvas";
+import { IAgent, IInput, SPECIAL_INPUT_NAME } from "#declare/agent";
+import { ICanvas } from "#declare/canvas";
+import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
+import { Services } from "#service/services";
+import { stringToArgs } from "#util/string/string";
 import { print_header, print_suggestion, print_takeingMore } from "./print";
 
 export const execute = (

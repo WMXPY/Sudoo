@@ -4,8 +4,8 @@
  * @fileoverview Print
  */
 
-import { ICommand } from '#/declare/service';
-import { spaces } from '#/util/string/string';
+import { ICommand } from '#declare/service';
+import { spaces } from '#util/string/string';
 import * as Colors from 'colors/safe';
 
 export const print_suggestion = (content: string, args?: number): string => {

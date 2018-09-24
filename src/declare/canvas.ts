@@ -4,7 +4,7 @@
  * @fileoverview Common_Canvas
  */
 
-import { END_SIGNAL } from "#/declare/service";
+import { END_SIGNAL } from "#declare/service";
 
 export interface ICanvas {
     clear: (lines?: number) => ICanvas;

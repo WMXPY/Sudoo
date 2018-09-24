@@ -14,13 +14,13 @@
         "noImplicitReturns": true,
         "paths": {
             "#/*": ["*"],
-            "#/common/*": ["common/*"],
-            "#/declare/*": ["declare/*"],
-            "#/service/*": ["service/*"],
-            "#/util/*": ["util/*"],
+            "#common/*": ["common/*"],
+            "#declare/*": ["declare/*"],
+            "#service/*": ["service/*"],
+            "#util/*": ["util/*"],
         },
         "sourceMap": true,
         "strict": true,
-        "target": "es6"
+        "target": "es5"
     }
 }

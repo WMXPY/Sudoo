@@ -4,7 +4,7 @@
  * @fileoverview Class
  */
 
-import { IInput, SPECIAL_INPUT_NAME } from "#/declare/agent";
+import { IInput, SPECIAL_INPUT_NAME } from "#declare/agent";
 
 export class Current {
     private _current: string;

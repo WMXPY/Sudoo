@@ -4,7 +4,7 @@
  * @fileoverview Class
  */
 
-import { IAgent, IInput } from "#/declare/agent";
+import { IAgent, IInput } from "#declare/agent";
 import * as Readline from 'readline';
 
 export class Agent implements IAgent {

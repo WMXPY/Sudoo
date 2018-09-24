@@ -4,7 +4,7 @@
  * @fileoverview Index
  */
 
-import { ICommand } from "#/declare/service";
+import { ICommand } from "#declare/service";
 
 export const spaces = (length: number) => {
     return ' '.repeat(length);

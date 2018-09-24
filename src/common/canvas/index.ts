@@ -4,8 +4,8 @@
  * @fileoverview Class
  */
 
-import { ICanvas } from "#/declare/canvas";
-import { END_SIGNAL } from "#/declare/service";
+import { ICanvas } from "#declare/canvas";
+import { END_SIGNAL } from "#declare/service";
 
 export class Canvas implements ICanvas {
     private static _instance: Canvas | null;

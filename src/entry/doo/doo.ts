@@ -5,15 +5,15 @@
  */
 
 require('../../binding');
-import { Agent } from "#/common/agent";
-import { Current } from "#/common/agent/current";
-import { Canvas } from "#/common/canvas";
-import { IAgent } from "#/declare/agent";
-import { ICanvas } from "#/declare/canvas";
-import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#/declare/service";
-import { Services } from "#/service/services";
-import { error, ERROR_CODE } from "#/util/error";
-import { stringToArgs } from "#/util/string/string";
+import { Agent } from "#common/agent";
+import { Current } from "#common/agent/current";
+import { Canvas } from "#common/canvas";
+import { IAgent } from "#declare/agent";
+import { ICanvas } from "#declare/canvas";
+import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
+import { Services } from "#service/services";
+import { error, ERROR_CODE } from "#util/error";
+import { stringToArgs } from "#util/string/string";
 import { execute, listenCommandWithArgsCurrent } from "./handler";
 import { print_header } from "./print";
 

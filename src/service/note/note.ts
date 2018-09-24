@@ -5,9 +5,9 @@
  * @fileoverview Note
  */
 
-import { Canvas } from "#/common/canvas";
-import { ICanvas } from "#/declare/canvas";
-import { AbstractService, END_SIGNAL, IService } from "#/declare/service";
+import { Canvas } from "#common/canvas";
+import { ICanvas } from "#declare/canvas";
+import { AbstractService, END_SIGNAL, IService } from "#declare/service";
 
 export class ServiceNote extends AbstractService implements IService {
     public readonly command: string = 'note';

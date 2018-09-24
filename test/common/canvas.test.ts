@@ -4,7 +4,7 @@
  * @fileoverview Class
  */
 
-import { Canvas } from '#/common/canvas';
+import { Canvas } from '#common/canvas';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { MockWriteableStream } from '../mock/node/writeable';
