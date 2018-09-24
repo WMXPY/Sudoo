@@ -10,8 +10,33 @@ export enum END_SIGNAL {
     MORE_ARGS = 2,
 }
 
+export type Partial<T> = {
+    [P in keyof T]?: T[P];
+};
+
+// tslint:disable-next-line
+export type PatternMap<T> = {
+    [key: string]: T;
+};
+
+export enum ARGUMENT_TYPE {
+    STRING = 'STRING',
+    PATH = 'PATH',
+    NUMBEr = 'NUMBER',
+    BOOLEAN = 'BOOLEAN',
+}
+
+export interface IArgumentPattern {
+    match?: (arg: string) => string | null;
+    optional?: boolean;
+    type: ARGUMENT_TYPE;
+}
+
+export type ArgPatternMap = PatternMap<IArgumentPattern>;
+
 export interface IService {
-    readonly command: string;
+    readonly command: string[];
+    readonly pattern: ArgPatternMap;
 
     readonly disabled?: boolean;
 
@@ -19,7 +44,8 @@ export interface IService {
 }
 
 export abstract class AbstractService implements IService {
-    public abstract readonly command: string;
+    public abstract readonly command: string[];
+    public abstract readonly pattern: ArgPatternMap;
 
     public readonly disabled?: boolean;
 
