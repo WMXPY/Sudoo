@@ -34,7 +34,7 @@ export const executeIOScript = (service: Services, env: IPathEnvironment) => {
                 canvas.exit(END_SIGNAL.FAILED);
             }
         })
-        .setOnTab((result: string) => service.firstSimilar(result) || result);
+        .setOnTab((result: string) => service.firstMostClose(result).closest || result);
 
     canvas.draw(print_snapshot({
         args: [],

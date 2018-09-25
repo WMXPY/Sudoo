@@ -7,8 +7,8 @@
 import { lastElement } from "#util/string/string";
 
 export const similar = (baseStr: string, targetStr: string): number => {
-    const base: string = baseStr.toLowerCase();
-    const target: string = targetStr.toLowerCase();
+    const base: string = baseStr.length < targetStr.length ? baseStr.toLowerCase() : targetStr.toLowerCase();
+    const target: string = baseStr.length < targetStr.length ? targetStr.toLowerCase() : baseStr.toLowerCase();
 
     const next: (m: number[][], i: number, j: number) => number =
         (m: number[][], i: number, j: number) => Math.min(m[i - 1][j - 1] + 1, m[i][j - 1] + 1, m[i - 1][j] + 1);
@@ -25,7 +25,5 @@ export const similar = (baseStr: string, targetStr: string): number => {
         }
     }
 
-    let result: number = lastElement<number>(lastElement<number[]>(map || []) || []);
-    if (targetStr.includes(baseStr)) result -= Math.floor(baseStr.length / 2);
-    return result;
+    return lastElement<number>(lastElement<number[]>(map || []) || []);
 };

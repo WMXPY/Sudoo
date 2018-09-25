@@ -22,6 +22,7 @@ export interface ISnapshotInfo {
     autocomplete?: {
         value: string;
         matched: boolean;
+        distance?: number;
     };
     input: string;
     mode: SNAPSHOT_MODE;

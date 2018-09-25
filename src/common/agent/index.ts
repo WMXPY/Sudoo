@@ -4,6 +4,7 @@
  * @fileoverview Class
  */
 
+import { Canvas } from "#common/canvas";
 import { IAgent, IInput } from "#declare/agent";
 import * as Readline from 'readline';
 
@@ -54,7 +55,11 @@ export class Agent implements IAgent {
     }
 
     public press(str: string, key: IInput): IAgent {
-        if (key.ctrl && key.name === 'c') {
+        if ((key.name === 'left' || key.name === 'right')
+            && process.stdout.isTTY) {
+            const canvas = Canvas.instance;
+            canvas.raw(key.sequence);
+        } else if (key.ctrl && key.name === 'c') {
             process.exit();
         } else {
             this._executable(key);

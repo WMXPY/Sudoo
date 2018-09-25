@@ -27,6 +27,12 @@ export class Canvas implements ICanvas {
         return this._instance;
     }
 
+    public raw(...contents: string[]): ICanvas {
+        const raw: string = contents.join('');
+        this._stream.write(raw);
+        return this;
+    }
+
     public draw(...contents: string[]): ICanvas {
         const draw: string = contents.join('');
         this._lastDraw = draw;

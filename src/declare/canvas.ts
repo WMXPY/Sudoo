@@ -9,6 +9,7 @@ import { END_SIGNAL } from "#declare/service";
 export interface ICanvas {
     clear: (lines?: number) => ICanvas;
     cursor: (place: number, top?: boolean) => ICanvas;
+    raw: (...contents: string[]) => ICanvas;
     draw: (...contents: string[]) => ICanvas;
     drawObject: (object: any) => ICanvas;
     enter: () => ICanvas;

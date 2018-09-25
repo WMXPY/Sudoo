@@ -48,7 +48,7 @@ export class Services {
         return null;
     }
 
-    public firstMostClose(cut: string): string {
+    public firstMostClose(cut: string): { closest: string; distance: number } {
         let closest: string = cut;
         let closestLength: number = Number.MAX_SAFE_INTEGER;
         for (let service of this._services) {
@@ -60,7 +60,7 @@ export class Services {
                 }
             }
         }
-        return closest;
+        return { closest, distance: closestLength };
     }
 
     public static get SUUInstance(): Services {
