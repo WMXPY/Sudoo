@@ -19,7 +19,10 @@ export interface ISnapshotInfoArg {
 
 export interface ISnapshotInfo {
     args: ISnapshotInfoArg[];
-    autocomplete?: string;
+    autocomplete?: {
+        value: string;
+        matched: boolean;
+    };
     input: string;
     mode: SNAPSHOT_MODE;
 }

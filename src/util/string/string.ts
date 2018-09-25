@@ -6,6 +6,9 @@
 
 import { ICommand } from "#declare/service";
 
+export const lastElement: <T>(arr: T[]) => T =
+    <T>(arr: T[]): T => arr[arr.length - 1];
+
 export const splitInput: (input: string) => string[] =
     (input: string): string[] =>
         (input.match(/\"\S[^\"]*\"|\S+/g) || [])

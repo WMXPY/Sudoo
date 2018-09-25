@@ -7,10 +7,7 @@
 import { IService } from "#declare/service";
 import { ISnapshotInfo, SNAPSHOT_MODE } from "#declare/snapshot";
 import { Services } from "#service/services";
-import { splitInput } from "#util/string/string";
-
-const lastElement: <T>(arr: T[]) => T =
-    <T>(arr: T[]): T => arr[arr.length - 1];
+import { lastElement, splitInput } from "#util/string/string";
 
 export const generateSnapshotInfo = (input: string, service: Services): ISnapshotInfo => {
     const split: string[] = splitInput(input);
@@ -19,7 +16,10 @@ export const generateSnapshotInfo = (input: string, service: Services): ISnapsho
     if (split.length > 0) {
         const last: string = lastElement(split);
         return {
-            autocomplete: last,
+            autocomplete: {
+                value: last,
+                matched: false,
+            },
             args: split.map((arg) => ({ name: arg, valid: true })),
             input,
             mode: SNAPSHOT_MODE.ARGUMENT,
@@ -28,6 +28,10 @@ export const generateSnapshotInfo = (input: string, service: Services): ISnapsho
         const rummaged: IService | null = service.find(command);
         if (rummaged) {
             return {
+                autocomplete: {
+                    value: command,
+                    matched: true,
+                },
                 args: [],
                 input,
                 mode: SNAPSHOT_MODE.MATCHED,
@@ -35,7 +39,10 @@ export const generateSnapshotInfo = (input: string, service: Services): ISnapsho
         }
         const expect: string = service.firstMostClose(command);
         return {
-            autocomplete: expect,
+            autocomplete: {
+                value: expect,
+                matched: false,
+            },
             args: [],
             input,
             mode: SNAPSHOT_MODE.GUESS,
