@@ -14,11 +14,6 @@ export type Partial<T> = {
     [P in keyof T]?: T[P];
 };
 
-// tslint:disable-next-line
-export type PatternMap<T> = {
-    [key: string]: T;
-};
-
 export enum ARGUMENT_TYPE {
     STRING = 'STRING',
     PATH = 'PATH',
@@ -28,29 +23,40 @@ export enum ARGUMENT_TYPE {
 
 export interface IArgumentPattern {
     match?: (arg: string) => string | null;
+    name: string;
     optional?: boolean;
     type: ARGUMENT_TYPE;
 }
 
-export type ArgPatternMap = PatternMap<IArgumentPattern>;
+export enum ARGUMENT_INTELLIGENCE_TYPE {
+    DESCRIPTION = 'DESCRIPTION',
+    AUTOCOMPLETE = 'AUTOCOMPLETE',
+}
+
+export interface IArgumentIntelligenceResult {
+    autocomplete?: string;
+    description?: string;
+}
 
 export interface IService {
     readonly commands: string[];
-    readonly pattern: ArgPatternMap;
+    readonly pattern: IArgumentPattern[];
 
     readonly disabled?: boolean;
 
     execute: (args: string[], env: IPathEnvironment) => END_SIGNAL;
+    intelligence: (key: string, input: string) => IArgumentIntelligenceResult;
 }
 
 export abstract class AbstractService implements IService {
     public abstract readonly commands: string[];
-    public abstract readonly pattern: ArgPatternMap;
+    public abstract readonly pattern: IArgumentPattern[];
 
     public readonly disabled?: boolean;
 
-    public execute(args: string[]): END_SIGNAL {
-        return END_SIGNAL.FAILED;
+    public abstract execute(args: string[]): END_SIGNAL;
+    public intelligence(key: string, input: string): IArgumentIntelligenceResult {
+        return {};
     }
 }
 

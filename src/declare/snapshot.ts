@@ -4,8 +4,10 @@
  * @fileoverview Snapshot
  */
 
+import { IArgumentIntelligenceResult, IArgumentPattern } from "#declare/service";
+
 export enum SNAPSHOT_MODE {
-    ARGUMENT = 'ARG',
+    ARGUMENT = 'ARGUM',
     EMPTY = 'EMPTY',
     ERROR = 'ERROR',
     GUESS = 'GUESS',
@@ -24,6 +26,9 @@ export interface ISnapshotInfo {
         matched: boolean;
         distance?: number;
     };
+    command?: string;
+    intelligence?: IArgumentIntelligenceResult;
     input: string;
     mode: SNAPSHOT_MODE;
+    pattern?: IArgumentPattern[];
 }

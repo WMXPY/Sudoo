@@ -4,50 +4,79 @@
  * @fileoverview Parser
  */
 
-import { IService } from "#declare/service";
+import { IArgumentIntelligenceResult, IArgumentPattern, IService } from "#declare/service";
 import { ISnapshotInfo, SNAPSHOT_MODE } from "#declare/snapshot";
 import { Services } from "#service/services";
 import { lastElement, splitInput } from "#util/string/string";
 
-export const generateSnapshotInfo = (input: string, service: Services): ISnapshotInfo => {
-    const split: string[] = splitInput(input);
-    const command: string = split.shift() || '';
+const generateCommandSnapshotInfo = (input: string, service: Services): ISnapshotInfo => {
+    const args: string[] = splitInput(input);
+    const command: string = args.shift() || '';
 
-    if (split.length > 0) {
-        const last: string = lastElement(split);
+    const rummaged: IService | null = service.find(command);
+    if (rummaged) {
         return {
-            autocomplete: {
-                value: last,
-                matched: false,
-            },
-            args: split.map((arg) => ({ name: arg, valid: true })),
-            input,
-            mode: SNAPSHOT_MODE.ARGUMENT,
-        };
-    } else {
-        const rummaged: IService | null = service.find(command);
-        if (rummaged) {
-            return {
-                autocomplete: {
-                    value: command,
-                    matched: true,
-                },
-                args: [],
-                input,
-                mode: SNAPSHOT_MODE.MATCHED,
-            };
-        }
-        const { closest, distance } = service.firstMostClose(command);
-        return {
-            autocomplete: {
-                value: closest,
-                matched: false,
-                distance,
-            },
             args: [],
+            command,
             input,
-            mode: SNAPSHOT_MODE.GUESS,
+            mode: SNAPSHOT_MODE.MATCHED,
+            pattern: rummaged.pattern,
         };
     }
+    const { closest, distance } = service.firstMostClose(command);
+    return {
+        autocomplete: {
+            value: closest,
+            matched: false,
+            distance,
+        },
+        args: [],
+        input,
+        mode: SNAPSHOT_MODE.GUESS,
+    };
+};
+
+const generateArgumentSnapshotInfo = (input: string, service: Services): ISnapshotInfo => {
+    const args: string[] = splitInput(input);
+    const command: string = args.shift() || '';
+
+    const rummaged: IService | null = service.find(command);
+    const position: number = args.length - 1;
+    if (!rummaged || position < 0) {
+        return {
+            args: [],
+            input,
+            mode: SNAPSHOT_MODE.ERROR,
+        };
+    }
+
+    const last: string = lastElement(args);
+
+    const argPattern: IArgumentPattern | undefined = rummaged.pattern[position];
+    const intelligence: IArgumentIntelligenceResult =
+        rummaged.intelligence(
+            argPattern ? argPattern.name : '',
+            args[position],
+        );
+
+    return {
+        autocomplete: {
+            value: last,
+            matched: false,
+        },
+        args: args.map((arg) => ({ name: arg, valid: true })),
+        command,
+        intelligence,
+        input,
+        mode: SNAPSHOT_MODE.ARGUMENT,
+        pattern: rummaged.pattern,
+    };
+};
+
+export const generateSnapshotInfo = (input: string, service: Services): ISnapshotInfo => {
+    const args: string[] = splitInput(input);
+    const command: string = args.shift() || '';
+    if (args.length > 0) return generateArgumentSnapshotInfo(input, service);
+    else return generateCommandSnapshotInfo(input, service);
 };
 

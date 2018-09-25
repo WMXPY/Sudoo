@@ -7,11 +7,11 @@
 
 import { Canvas } from "#common/canvas";
 import { ICanvas } from "#declare/canvas";
-import { AbstractService, ArgPatternMap, END_SIGNAL, IService } from "#declare/service";
+import { AbstractService, END_SIGNAL, IArgumentPattern, IService } from "#declare/service";
 
 export class ServiceNote extends AbstractService implements IService {
     public readonly commands: string[] = ['note'];
-    public readonly pattern: ArgPatternMap = {};
+    public readonly pattern: IArgumentPattern[] = [];
 
     public execute(args: string[]): END_SIGNAL {
         const canvas: ICanvas = Canvas.instance;

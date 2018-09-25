@@ -16,7 +16,7 @@ describe('Given similarity function', function (this: Mocha.Suite): void {
         const baseString: string = chance.string();
         const result: number = similar(baseString, baseString);
 
-        expect(result).to.be.equal(-3);
+        expect(result).to.be.equal(0);
     });
 
     it('should get more than 1 with different strings', () => {
