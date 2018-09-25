@@ -37,10 +37,10 @@ export const generateSnapshotInfo = (input: string, service: Services): ISnapsho
                 mode: SNAPSHOT_MODE.MATCHED,
             };
         }
-        const expect: string = service.firstMostClose(command);
+        const closest = service.firstMostClose(command);
         return {
             autocomplete: {
-                value: expect,
+                value: closest,
                 matched: false,
             },
             args: [],

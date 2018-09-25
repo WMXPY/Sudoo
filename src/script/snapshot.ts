@@ -32,7 +32,7 @@ const snapshot_head_intelligence = (str: string, done: boolean): string => {
 const snapshot_head = (info: ISnapshotInfo): string => {
     return snapshot_head_mark(info) +
         (info.autocomplete
-            ? snapshot_head_intelligence(
+            ? ' ' + snapshot_head_intelligence(
                 info.autocomplete.value,
                 info.autocomplete.matched,
             )

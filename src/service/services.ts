@@ -11,6 +11,7 @@ import { ServiceNote } from "./note/note";
 
 const getSUServices = (): IService[] => [
     new ServiceInstall(),
+    new ServiceNote(),
 ];
 
 const getDOOServices = (): IService[] => [
@@ -52,7 +53,7 @@ export class Services {
         let closestLength: number = Number.MAX_SAFE_INTEGER;
         for (let service of this._services) {
             for (let command of service.commands) {
-                const similarity: number = similar(command, cut);
+                const similarity: number = similar(cut, command);
                 if (similarity < closestLength) {
                     closest = command;
                     closestLength = similarity;

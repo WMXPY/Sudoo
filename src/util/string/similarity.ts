@@ -4,6 +4,7 @@
  * @fileoverview Similarity
  */
 
+import { lastElement } from "#util/string/string";
 
 export const similar = (baseStr: string, targetStr: string): number => {
     const base: string = baseStr.toLowerCase();
@@ -11,8 +12,6 @@ export const similar = (baseStr: string, targetStr: string): number => {
 
     const next: (m: number[][], i: number, j: number) => number =
         (m: number[][], i: number, j: number) => Math.min(m[i - 1][j - 1] + 1, m[i][j - 1] + 1, m[i - 1][j] + 1);
-    const last: <T>(arr: T[]) => T =
-        <T>(arr: T[]) => arr[arr.length - 1];
 
     const map: number[][] =
         new Array(base.length).fill(undefined)
@@ -26,5 +25,7 @@ export const similar = (baseStr: string, targetStr: string): number => {
         }
     }
 
-    return last<number>(last<number[]>(map));
+    let result: number = lastElement<number>(lastElement<number[]>(map || []) || []);
+    if (targetStr.includes(baseStr)) result -= Math.floor(baseStr.length / 2);
+    return result;
 };
