@@ -7,6 +7,7 @@
 import { Agent } from "#common/agent";
 import { Current } from "#common/agent/current";
 import { Canvas } from "#common/canvas";
+import { generateSnapshotInfo } from "#common/parse/snapshot";
 import { IAgent, IInput, SPECIAL_INPUT_NAME } from "#declare/agent";
 import { ICanvas } from "#declare/canvas";
 import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
@@ -77,8 +78,8 @@ export const listenCommandWithArgsCurrent = (service: Services, current: Current
         if (info) {
             tail += print_suggestion(info, command.args.length);
         }
-
-        canvas.replace(print_snapshot(str));
+        const snapshot = generateSnapshotInfo(str, service);
+        canvas.replace(print_snapshot(snapshot));
         canvas.cursor(current.length + 2);
     };
 };

@@ -6,6 +6,7 @@
 
 import { IService } from "#declare/service";
 import { ServiceInstall } from "#service/install/install";
+import { similar } from "#util/string/similarity";
 import { ServiceNote } from "./note/note";
 
 const getSUServices = (): IService[] => [
@@ -44,6 +45,21 @@ export class Services {
             }
         }
         return null;
+    }
+
+    public firstMostClose(cut: string): string {
+        let closest: string = cut;
+        let closestLength: number = Number.MAX_SAFE_INTEGER;
+        for (let service of this._services) {
+            for (let command of service.commands) {
+                const similarity: number = similar(command, cut);
+                if (similarity < closestLength) {
+                    closest = command;
+                    closestLength = similarity;
+                }
+            }
+        }
+        return closest;
     }
 
     public static get SUUInstance(): Services {
