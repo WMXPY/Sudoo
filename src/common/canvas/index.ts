@@ -73,12 +73,12 @@ export class Canvas implements ICanvas {
 
     public clear(lines: number = 0): ICanvas {
         this.cursor(0);
-        // (this._stream as any).clearLine();
+        (this._stream as any).clearLine();
 
         if (lines) {
             for (let i = 0; i < lines - 1; i++) {
                 this.cursor(0, true);
-                // (this._stream as any).clearLine();
+                (this._stream as any).clearLine();
             }
         }
 
