@@ -4,7 +4,7 @@
  * @fileoverview Snapshot
  */
 
-import { IArgumentPattern, IArgumentIntelligenceResult } from '#declare/service';
+import { IArgumentIntelligenceResult, IArgumentPattern } from '#declare/service';
 import { ISnapshotInfo, ISnapshotInfoArg, SNAPSHOT_MODE } from '#declare/snapshot';
 import { spaces } from '#util/string/string';
 import * as Colors from 'colors/safe';

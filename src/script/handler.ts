@@ -71,16 +71,8 @@ export const listenCommandWithArgsCurrent = (service: Services, current: Current
             return;
         }
 
-        const command = stringToArgs(str);
-        const info: string | null = service.firstSimilar(command.command);
-
-        let tail: string = '';
-        if (info) {
-            tail += print_suggestion(info, command.args.length);
-        }
         const snapshot = generateSnapshotInfo(str, service);
         canvas.replace(print_snapshot(snapshot));
-        canvas.cursor(current.length + 2);
     };
 };
 
@@ -91,6 +83,5 @@ export const listenMoreArgsCurrent = (current: Current) => {
         const str: string = current.input(key);
 
         canvas.replace(print_header(str));
-        canvas.cursor(current.length + 2);
     };
 };
