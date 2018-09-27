@@ -14,7 +14,7 @@ export type Partial<T> = {
     [P in keyof T]?: T[P];
 };
 
-export enum ARGUMENT_TYPE {
+export enum DATA_TYPE {
     STRING = 'STRING',
     PATH = 'PATH',
     NUMBER = 'NUMBER',
@@ -25,7 +25,14 @@ export interface IArgumentPattern {
     match?: (arg: string) => string | null;
     name: string;
     optional?: boolean;
-    type: ARGUMENT_TYPE;
+    type: DATA_TYPE;
+}
+
+export interface IOptionPattern {
+    match?: (arg: string) => string | null;
+    option: string[];
+    name: string;
+    type: DATA_TYPE;
 }
 
 export enum ARGUMENT_INTELLIGENCE_TYPE {
@@ -44,17 +51,17 @@ export interface IService {
 
     readonly disabled?: boolean;
 
-    execute: (args: string[], env: IPathEnvironment) => END_SIGNAL;
+    execute: (props: any, env: IPathEnvironment) => END_SIGNAL;
     intelligence: (key: string, input: string) => IArgumentIntelligenceResult;
 }
 
-export abstract class AbstractService implements IService {
+export abstract class AbstractService<IProps> implements IService {
     public abstract readonly commands: string[];
     public abstract readonly pattern: IArgumentPattern[];
 
     public readonly disabled?: boolean;
 
-    public abstract execute(args: string[]): END_SIGNAL;
+    public abstract execute(props: IProps, env: IPathEnvironment): END_SIGNAL;
     public intelligence(key: string, input: string): IArgumentIntelligenceResult {
         return {};
     }
