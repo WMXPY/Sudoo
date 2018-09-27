@@ -20,6 +20,7 @@ const generateCommandSnapshotInfo = (input: string, service: Services): ISnapsho
             command,
             input,
             mode: SNAPSHOT_MODE.MATCHED,
+            options: {},
             pattern: rummaged.pattern,
         };
     }
@@ -33,6 +34,7 @@ const generateCommandSnapshotInfo = (input: string, service: Services): ISnapsho
         args: [],
         input,
         mode: SNAPSHOT_MODE.GUESS,
+        options: {},
     };
 };
 
@@ -47,6 +49,7 @@ const generateArgumentSnapshotInfo = (input: string, service: Services): ISnapsh
             args: [],
             input,
             mode: SNAPSHOT_MODE.ERROR,
+            options: {},
         };
     }
 
@@ -64,11 +67,12 @@ const generateArgumentSnapshotInfo = (input: string, service: Services): ISnapsh
             value: last,
             matched: false,
         },
-        args: args.map((arg) => ({ name: arg, valid: true })),
+        args,
         command,
         intelligence,
         input,
         mode: SNAPSHOT_MODE.ARGUMENT,
+        options: {},
         pattern: rummaged.pattern,
     };
 };

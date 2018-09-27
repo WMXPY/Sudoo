@@ -40,6 +40,7 @@ export const executeIOScript = (service: Services, env: IPathEnvironment) => {
         args: [],
         input: '',
         mode: SNAPSHOT_MODE.EMPTY,
+        options: {},
     }));
     agent.listen(listenCommandWithArgsCurrent(service, current));
 };

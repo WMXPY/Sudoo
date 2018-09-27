@@ -11,10 +11,9 @@ import { generateSnapshotInfo } from "#common/parse/snapshot";
 import { IAgent, IInput, SPECIAL_INPUT_NAME } from "#declare/agent";
 import { ICanvas } from "#declare/canvas";
 import { END_SIGNAL, ICommand, IPathEnvironment, IService } from "#declare/service";
-import { print_header, print_suggestion, print_takeingMore } from "#script/print";
+import { print_header, print_takeingMore } from "#script/print";
 import { print_snapshot } from "#script/snapshot";
 import { Services } from "#service/services";
-import { stringToArgs } from "#util/string/string";
 
 export const execute = (
     service: IService,

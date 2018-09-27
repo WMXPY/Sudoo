@@ -14,13 +14,8 @@ export enum SNAPSHOT_MODE {
     MATCHED = 'MATCH',
 }
 
-export interface ISnapshotInfoArg {
-    name: string;
-    valid: boolean;
-}
-
 export interface ISnapshotInfo {
-    args: ISnapshotInfoArg[];
+    args: string[];
     autocomplete?: {
         value: string;
         matched: boolean;
@@ -30,5 +25,6 @@ export interface ISnapshotInfo {
     intelligence?: IArgumentIntelligenceResult;
     input: string;
     mode: SNAPSHOT_MODE;
+    options: { [key: string]: string };
     pattern?: IArgumentPattern[];
 }
