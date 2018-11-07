@@ -5,11 +5,11 @@
  */
 
 import { IArgumentIntelligenceResult, IArgumentPattern } from '#declare/service';
-import { ISnapshotInfo, ISnapshotInfoArg, SNAPSHOT_MODE } from '#declare/snapshot';
+import { ISnapshotInfo, SNAPSHOT_MODE } from '#declare/snapshot';
 import { spaces } from '#util/string/string';
 import * as Colors from 'colors/safe';
 
-const snapshot_head_mark_args = (args: ISnapshotInfoArg[], pattern?: IArgumentPattern[]) => {
+const snapshot_head_mark_args = (args: any[], pattern?: IArgumentPattern[]) => {
     if (!pattern) {
         return '';
     }
